@@ -71,7 +71,7 @@ class BaseEmailService:
                 from_email = self.default_from_email
 
             # Add settings to context
-            context['frontend_url'] = getattr(settings, 'FRONTEND_URL', 'https://app.unravel.so')
+            context['frontend_url'] = getattr(settings, 'FRONTEND_URL', 'https://eezz.ad')
             context['support_email'] = getattr(settings, 'SUPPORT_EMAIL', 'support@unravel.so')
 
             # Render email templates

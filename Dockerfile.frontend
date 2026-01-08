@@ -10,7 +10,7 @@ RUN npm ci
 COPY frontend/ ./
 
 # Build the app
-ARG VITE_API_URL=https://app.unravel.sunship.space/api
+ARG VITE_API_URL=https://eezz.ad/api
 ENV NODE_ENV=production
 ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
