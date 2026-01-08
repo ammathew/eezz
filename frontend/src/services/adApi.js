@@ -75,7 +75,11 @@ export const adApi = {
     const response = await fetch(`${API_BASE_URL}/facebook/connect/`, {
       method: 'POST',
       headers: getAuthHeaders(),
-      body: JSON.stringify(payload),
+      // body: JSON.stringify(payload),
+      body: JSON.stringify({
+        ...payload,
+        ad_account_id: '1427330949000383',
+      }),
     });
     if (!response.ok) {
       const error = await response.json();

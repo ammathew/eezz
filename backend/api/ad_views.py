@@ -4,6 +4,7 @@ import logging
 from datetime import datetime, timedelta
 
 import requests
+from decouple import config
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -204,7 +205,14 @@ def launch_facebook_ad(request):
     cta = cta_map.get(cta_raw, cta_raw.upper() if cta_raw else 'LEARN_MORE')
 
     account_id = _get_account_id(connection.ad_account_id)
-    access_token = connection.access_token
+    sandbox_token = config('FB_SANDBOX_TOKEN', default='').strip()
+    access_token = sandbox_token or connection.access_token
+    logger.info(
+        "launch_facebook_ad token_source=%s ad_account_id=%s page_id=%s",
+        "FB_SANDBOX_TOKEN" if sandbox_token else "facebook_connection",
+        account_id,
+        connection.page_id
+    )
 
     try:
         image_bytes = render_ad_image(image_text)

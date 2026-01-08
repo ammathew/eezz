@@ -30,7 +30,8 @@ export default defineConfig({
       'localhost',
       '127.0.0.1',
       '.sunship.space',
-      '8077ddee1e26.ngrok-free.app'
+      '8077ddee1e26.ngrok-free.app',
+      'local.eezz.test'
     ],
     proxy: {
       '/api': {

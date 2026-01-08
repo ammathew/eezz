@@ -99,6 +99,18 @@ def _fetch_ad_accounts(access_token):
     return response.json().get('data', [])
 
 
+def _manual_ad_account(ad_account_id):
+    raw = (ad_account_id or '').strip()
+    if not raw:
+        return None
+    account_id = raw[4:] if raw.startswith('act_') else raw
+    return {
+        'id': raw if raw.startswith('act_') else f"act_{raw}",
+        'account_id': account_id,
+        'name': 'Manual ad account',
+    }
+
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def facebook_login_url(request):
@@ -206,10 +218,12 @@ def facebook_connect(request):
     if desired_ad_account_id:
         ad_account = next((a for a in ad_accounts if a.get('id') == desired_ad_account_id or a.get('account_id') == desired_ad_account_id), None)
         if not ad_account:
-            return Response(
-                {'error': 'Requested ad_account_id not found'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            manual_account = _manual_ad_account(desired_ad_account_id)
+            if manual_account:
+                logger.warning("Using manual ad account override: %s", manual_account.get('id'))
+                ad_account = manual_account
+                if manual_account not in ad_accounts:
+                    ad_accounts.append(manual_account)
     elif ad_accounts:
         ad_account = ad_accounts[0]
 
