@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,eezz.ad', cast=Csv())
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,eezz.ad,app.eezz.ad', cast=Csv())
 
 
 # Application definition
@@ -169,7 +169,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS Settings
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://localhost:5173,https://eezz.ad',
+    default='http://localhost:3000,http://localhost:5173,https://eezz.ad,https://app.eezz.ad',
     cast=Csv()
 )
 CORS_ALLOW_CREDENTIALS = True
@@ -177,7 +177,7 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF Settings
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='http://localhost:3000,http://localhost:5173,https://eezz.ad',
+    default='http://localhost:3000,http://localhost:5173,https://eezz.ad,https://app.eezz.ad',
     cast=Csv()
 )
 

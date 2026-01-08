@@ -20,8 +20,8 @@ def get_base_url(request=None):
         host = request.get_host()
         return f"https://{host}"
 
-    # Fallback to eezz.ad
-    return "https://eezz.ad"
+    # Fallback to app.eezz.ad
+    return "https://app.eezz.ad"
 
 
 def get_frontend_url(request=None):
@@ -34,8 +34,8 @@ def get_frontend_url(request=None):
         host = request.get_host()
         return f"https://{host}"
 
-    # Fallback to eezz.ad
-    return "https://eezz.ad"
+    # Fallback to app.eezz.ad
+    return "https://app.eezz.ad"
 
 
 class GoogleLogin(SocialLoginView):
