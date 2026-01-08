@@ -10,6 +10,18 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RemoveIndex(
+            model_name='reflection',
+            name='dream_brain_dream_c_524481_idx',
+        ),
+        migrations.RemoveIndex(
+            model_name='reflection',
+            name='dream_brain_status_098b53_idx',
+        ),
+        migrations.RemoveIndex(
+            model_name='reflection',
+            name='dream_brain_user_id_9b9f8c_idx',
+        ),
         migrations.AlterUniqueTogether(
             name='personalsymbol',
             unique_together=None,
